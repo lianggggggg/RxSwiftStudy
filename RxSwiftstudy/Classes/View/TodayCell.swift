@@ -1,19 +1,19 @@
 //
-//  ViewCell.swift
+//  TodayCell.swift
 //  RxSwiftstudy
 //
-//  Created by admin on 2018/5/22.
+//  Created by admin on 2018/5/24.
 //  Copyright © 2018年 MrLiang. All rights reserved.
 //
 
 import UIKit
 import Reusable
 
-class ViewCell: UITableViewCell,NibReusable {
-
+class TodayCell: UITableViewCell,NibReusable {
     
-    @IBOutlet weak var lbl: UILabel!
-    
+    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var contentLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,14 +28,8 @@ class ViewCell: UITableViewCell,NibReusable {
     
 }
 
-extension ViewCell{
-    
-//    static func cellHeight() -> CGFloat{
-//        
-//        print(self.lbl.text?.count)
-//
-//        return 240
-//    }
-    
+extension TodayCell{
+    static func cellHeight() -> CGFloat{
+        return (KScreenWidth - 40)*1.3+25
+    }
 }
-
