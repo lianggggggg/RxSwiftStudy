@@ -21,7 +21,15 @@ enum NetWorkTool {
 
 extension NetWorkTool:TargetType{
     var baseURL: URL {
-        return URL.init(string: "http://gank.io/api/data/")!
+        
+        switch self {
+            
+        case .data(_, _, _):
+            return URL.init(string: "http://gank.io/api/data/")!
+        default :
+            return URL.init(string: "http://www.baidu.com")!
+        }
+//        return URL.init(string: "http://gank.io/api/data/")!
     }
     
     var path: String {
@@ -32,7 +40,13 @@ extension NetWorkTool:TargetType{
     }
     
     var method: Moya.Method {
-        return .get
+        
+        switch self {
+        case .data(_, _, _):
+            return .get
+        default:
+            return .post
+        }
     }
     
     var sampleData: Data {

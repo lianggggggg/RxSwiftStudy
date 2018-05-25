@@ -19,7 +19,10 @@ class ViewController: UIViewController {
         didSet{
             tableView.backgroundColor = .yellow
             tableView.register(cellType: ViewCell.self)
-            tableView.rowHeight = ViewCell.cellHeight()
+//            tableView.rowHeight = ViewCell.cellHeight()
+            tableView.estimatedRowHeight = 100
+            tableView.rowHeight = UITableViewAutomaticDimension
+            
         }
     }
     
@@ -28,7 +31,7 @@ class ViewController: UIViewController {
     let dataSource = RxTableViewSectionedReloadDataSource<sectionModel>(configureCell: {ds,tv,ip,item in UITableViewCell()
         
         let cell = tv.dequeueReusableCell(for: ip) as ViewCell
-        
+        cell.lbl.text = item.url
         return cell
     })
     
@@ -70,7 +73,7 @@ extension ViewController{
         //设置代理
         tableView.rx.setDelegate(self).disposed(by: self.rx.disposeBag)
         
-        
+        //MARK:tableview点击事件
         //tableview点击事件 -> 直接拿数据
         tableView.rx.modelSelected(Model.self).subscribe(onNext: { (model) in
             
@@ -82,11 +85,10 @@ extension ViewController{
         tableView.rx.itemSelected.asObservable().subscribe(onNext: { (indexpath) in
          
             print(indexpath)
-                        
+            
             print(try? self.dataSource.model(at: indexpath))
             
         }).disposed(by: self.rx.disposeBag)
-        
         
         let input = ViewModel.VmInPut.init(category: .welfare)
         let output = self.viewModel.transfrom(input: input)
@@ -127,12 +129,19 @@ extension ViewController{
 }
 
 extension ViewController:UITableViewDelegate{
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        
-        
-    }
+    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//
+//        let model = try! self.dataSource.model(at: indexPath) as! Model
+//
+//        print(model.url)
+//
+//
+//
+//
+//        return 60
+//    }
+    
 }
 
 

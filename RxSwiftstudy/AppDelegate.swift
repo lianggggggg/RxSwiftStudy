@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         ProgressHUD.initProgressHUD()
         
+        
+        
+//        Thread.sleep(forTimeInterval: 1)
+        
         return true
     }
 

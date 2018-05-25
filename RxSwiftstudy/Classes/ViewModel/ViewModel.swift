@@ -48,31 +48,30 @@ extension ViewModel:ViewModelType{
         let requestCommond = PublishSubject<Bool>()
         //传出刷新状态
         let refreshStatus = Variable<refreshStatus>(.none)
-        
+
         init(sections:Driver<[sectionModel]>) {
             self.sections = sections
         }
-        
+
     }
-    
-    
-    
 
     typealias Input = VmInPut
     
+    typealias Output = VmOutPut
+
     func transfrom(input: ViewModel.VmInPut) -> ViewModel.VmOutPut {
-        
+
         let sections = models.asObservable().map { (models) -> [sectionModel] in
             // 当models的值被改变时会调用
             return [sectionModel(items: models)]
         }.asDriver(onErrorJustReturn: [])
-        
+
         let outPut = VmOutPut(sections: sections)
 
         outPut.requestCommond.subscribe(onNext: {[unowned self] isReloadData in
-            
+
             self.pageNum = isReloadData ? 1 : self.pageNum + 1
-            
+
             netTool.request(NetWorkTool.data(type: input.category, pageSize: 10, pageNum: self.pageNum)).asObservable().mapArray(Model.self).subscribe {[weak self] (event) in
                 switch event {
                 case let .next(modelArr):
@@ -84,11 +83,11 @@ extension ViewModel:ViewModelType{
                     outPut.refreshStatus.value = isReloadData ? .endHeaderRefresh : .endFooterRefresh
                 }
                 }.disposed(by: self.rx.disposeBag)
-            
+
         }).disposed(by: self.rx.disposeBag)
-        
+
         return outPut
     }
-    
-    
+
+
 }
