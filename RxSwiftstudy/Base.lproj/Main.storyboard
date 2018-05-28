@@ -280,7 +280,7 @@
         <!--Today Detail View Controller-->
         <scene sceneID="DVi-nO-pWx">
             <objects>
-                <viewController id="FkB-U0-L6m" customClass="TodayDetailViewController" customModule="RxSwiftstudy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TodayDetailViewController" id="FkB-U0-L6m" customClass="TodayDetailViewController" customModule="RxSwiftstudy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5el-zN-gig">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

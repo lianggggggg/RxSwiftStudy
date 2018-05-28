@@ -10,6 +10,13 @@ import UIKit
 
 class TodayDetailViewController: UIViewController {
 
+    
+    lazy var headerImageView:UIImageView = {
+        let imgView = UIImageView()
+        imgView.isUserInteractionEnabled = true
+        return imgView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
