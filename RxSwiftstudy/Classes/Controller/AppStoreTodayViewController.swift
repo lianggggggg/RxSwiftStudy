@@ -54,7 +54,7 @@ class AppStoreTodayViewController: UIViewController {
         bindView()
         
         self.tableView.mj_header.beginRefreshing()
-        
+ 
     }
     
     
@@ -122,7 +122,10 @@ extension AppStoreTodayViewController{
 
             cell.transform = cell.transform.scaledBy(x: 0.9, y: 0.9)
             
-            self.navigationController?.pushViewController(UIViewController(), animated: true)
+            
+            let todayDetailVC = loadStoryBoardVC("Main", "TodayDetailViewController") as! TodayDetailViewController
+            
+            self.navigationController?.pushViewController(todayDetailVC, animated: true)
             
             
         })
@@ -152,6 +155,9 @@ extension AppStoreTodayViewController{
         }).disposed(by: self.rx.disposeBag)
         
         self.tableView.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
+            
+            print(getWIFIName())
+            
             output.requestCommond.onNext(true)
         })
         
@@ -162,8 +168,70 @@ extension AppStoreTodayViewController{
     
 }
 
-extension AppStoreTodayViewController:UINavigationControllerDelegate{
+extension AppStoreTodayViewController:UINavigationControllerDelegate,UIViewControllerAnimatedTransitioning{
     
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return self
+    }
+    
+    
+    //设置动画世界
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return 1.0
+    }
+    
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+
+        let cell = self.tableView.cellForRow(at: self.tableView.indexPathForSelectedRow!) as! TodayCell
+
+        let toVC = transitionContext.viewController(forKey: .to)  //  跳转后的页面
+        let toView = (toVC as! TodayDetailViewController).headerImageView
+        let fromView = cell.backView
+
+        let containerView = transitionContext.containerView
+        let snapShotView = UIImageView.init(image: cell.imgView.image)
+
+        snapShotView.frame = containerView.convert(fromView!.frame, to: fromView?.superview)
+
+        fromView?.isHidden = true
+
+        toVC?.view.frame = transitionContext.finalFrame(for: toVC!)
+        toVC?.view.alpha = 0
+        toView.isHidden = true
+        
+        let titleLbl = UILabel.init(frame: CGRect.init(x: 15, y: 20, width: KScreenWidth - 30, height: 30))
+        titleLbl.font = UIFont.systemFont(ofSize: 25)
+        titleLbl.textColor = .white
+        titleLbl.text = cell.titleLbl.text
+        
+        let contentLbl = UILabel.init(frame: CGRect.init(x: 15, y: (KScreenWidth - 40)*1.3 - 40, width: KScreenWidth - 44, height: 15))
+        contentLbl.textColor = .white
+        contentLbl.font = UIFont.systemFont(ofSize: 15)
+        contentLbl.alpha = 0.5
+        contentLbl.text = cell.contentLbl.text
+        
+        snapShotView.addSubview(titleLbl)
+        snapShotView.addSubview(contentLbl)
+        
+        containerView.addSubview((toVC?.view)!)
+        containerView.addSubview(snapShotView)
+        
+        UIView.animate(withDuration: self.transitionDuration(using: transitionContext), delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1.0, options: .curveLinear, animations: {
+            
+            containerView.layoutIfNeeded()
+            toVC?.view.alpha = 1.0
+            
+            let tabBar = self.tabBarController?.tabBar
+            
+            
+            
+            
+        }) { (finished) in
+            
+        }
+        
+        
+    }
     
     
 }

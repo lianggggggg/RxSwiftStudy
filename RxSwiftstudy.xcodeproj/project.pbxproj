@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6615F50F9DF8928DF842710D /* Pods_RxSwiftstudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 365D94C7F99AC5FE742C96CC /* Pods_RxSwiftstudy.framework */; };
+		841CA8F520BBAF3B0076775A /* ValidatedTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CA8F420BBAF3B0076775A /* ValidatedTool.swift */; };
 		8440CE0D20B6564400BBFF9F /* AppStoreTodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440CE0C20B6564400BBFF9F /* AppStoreTodayViewController.swift */; };
 		8440CE0F20B660B600BBFF9F /* TodayHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440CE0E20B660B600BBFF9F /* TodayHeaderView.swift */; };
 		8440CE1120B660C200BBFF9F /* TodayHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8440CE1020B660C100BBFF9F /* TodayHeaderView.xib */; };
@@ -58,6 +59,7 @@
 
 /* Begin PBXFileReference section */
 		365D94C7F99AC5FE742C96CC /* Pods_RxSwiftstudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxSwiftstudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		841CA8F420BBAF3B0076775A /* ValidatedTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatedTool.swift; sourceTree = "<group>"; };
 		8440CE0C20B6564400BBFF9F /* AppStoreTodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreTodayViewController.swift; sourceTree = "<group>"; };
 		8440CE0E20B660B600BBFF9F /* TodayHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayHeaderView.swift; sourceTree = "<group>"; };
 		8440CE1020B660C100BBFF9F /* TodayHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodayHeaderView.xib; sourceTree = "<group>"; };
@@ -144,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				8483ED6D20B55112007BD93B /* Common.swift */,
-				8483ED7120B55371007BD93B /* Function.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -274,6 +275,8 @@
 				8496C53920B3DF6B007B27CC /* NetWorkTool.swift */,
 				8496C53B20B3E38F007B27CC /* ProgressHUD.swift */,
 				8440CE1220B665D400BBFF9F /* NibLoadable.swift */,
+				8483ED7120B55371007BD93B /* Function.swift */,
+				841CA8F420BBAF3B0076775A /* ValidatedTool.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 				8496C53A20B3DF6B007B27CC /* NetWorkTool.swift in Sources */,
 				8483ED6920B5445A007BD93B /* RegisterViewController.swift in Sources */,
 				8483ED7220B55371007BD93B /* Function.swift in Sources */,
+				841CA8F520BBAF3B0076775A /* ValidatedTool.swift in Sources */,
 				8440CE1320B665D400BBFF9F /* NibLoadable.swift in Sources */,
 				8496C54220B3FA26007B27CC /* ViewModel.swift in Sources */,
 				8440CE0F20B660B600BBFF9F /* TodayHeaderView.swift in Sources */,
